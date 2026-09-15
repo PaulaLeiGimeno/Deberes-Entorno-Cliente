@@ -12,11 +12,9 @@ function showAndHide() {
     if (isTableShowing === 'none') {
         isTableShowing = 'block';
         foodTable.style.display = isTableShowing;
-        console.log('table showing')
     } else {
         isTableShowing = 'none';
         foodTable.style.display = isTableShowing;
-        console.log('table hidden')
     }
 }
 
@@ -41,17 +39,14 @@ let modal = document.getElementsByClassName('modal')[0];
 
 function lowerOpacity() {
     this.style.opacity = '0.5';
-    console.log('opacity lowers')
 }
 function raiseOpacity() {
     this.style.opacity = '1'
-    console.log('opacity raises')
 }
 
 function raiseModal(i) {
     modal.className = 'modal show-modal';
-    console.log(i)
-    let sandwichModal = document.getElementsByTagName('h1')[i]
+    let sandwichModal = document.getElementsByTagName('h1')[1]
     switch (i) {
         case 1:
             sandwichModal.innerHTML = '<h1> <a href="https://es.wikipedia.org/wiki/Chivito">Chivito</a></h1>';
@@ -77,14 +72,15 @@ function raiseModal(i) {
 }
 function closeModal() {
     modal.className = 'modal';
-
-
 }
 
-for (let i = 2; i < images.length; i++) {
+
+
+
+for (let i = 1; i < images.length; i++) {
     images[i].addEventListener('mouseover', lowerOpacity)
     images[i].addEventListener('mouseout', raiseOpacity)
     images[i].addEventListener('click', () => raiseModal(i))
-    images[i].getElementsByClassName('close-button')[0].addEventListener('click', closeModal);;
 }
-
+//El elemento .close-button debe asignarse fuera del bucle.
+document.getElementsByClassName('close-button')[0].addEventListener('click', closeModal);

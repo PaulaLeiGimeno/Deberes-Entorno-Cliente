@@ -44,7 +44,6 @@ function hideNutrition() {
     // document.addEventListener('DOMContentLoaded', function)
     //no es this porque que se quiere cambiar nutrition y no window
     nutrition.innerHTML = '';
-    console.log('hide nutrition')
 }
 
 function showNutrition() {
@@ -61,7 +60,6 @@ function showNutrition() {
             </span>
         </li>
     `;
-    console.log('show nutrition')
 }
 
 image = document.getElementsByTagName('img')[0];
@@ -104,7 +102,6 @@ function changeStyle(pNumber) {
     }
 
     let paragraph = document.getElementsByTagName('p')[pNumber];
-    console.log('change style of paragraph ' + (pNumber+1))
 
     paragraph.style.color = '#05A8AA';
     paragraph.style.fontWeight = 'bold';
