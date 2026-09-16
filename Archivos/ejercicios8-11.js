@@ -87,13 +87,13 @@ function displayCakeName() {
             cakeName = 'Tiramisu'
             break;
     }
-    title.textContent=cakeName;
+    title.textContent = cakeName;
 }
-function hideCakeName(){
-    title.textContent='Tartas'
+function hideCakeName() {
+    title.textContent = 'Tartas'
 }
 
-cakeImgs.addEventListener('mousedown',displayCakeName)
+cakeImgs.addEventListener('mousedown', displayCakeName)
 cakeImgs.addEventListener('mouseup', hideCakeName)
 
 
@@ -109,6 +109,24 @@ primer  nivel  a  los  siguientes valores:
 - Horizontal: entre 500 y 500 píxels. Vertical: entre 500 y 1000 píxels. Color: verde. 
 - Resto: color blanco. 
 */
+let title2 = document.getElementsByTagName('h1')[0];
+
+function changeTitle(e) {
+    if (e.clientX < 500 && e.clientY < 500) {
+        title2.style.color = 'yellow';
+    }
+      if (e.clientX < 500 && e.clientY > 500) {
+        title2.style.color = 'red';
+    }
+     if (e.clientX > 500 && e.clientY < 500) {
+        title2.style.color = 'blue';
+    }
+      if (e.clientX == 500 && e.clientY > 500) {
+        title2.style.color = 'green';
+    }
+}
+
+document.addEventListener('mousemove', (e) => changeTitle(e))
 
 
 
@@ -117,3 +135,18 @@ En  el  archivo  postres.html  proporcionado, implementa un script para que cuan
 A,  B  o  C,  cambien  los  colores  del  fondo  del  título  de  primer nivel. 
 Si se pulsa cualquier otra tecla, volverá al color original.
 */
+
+
+
+function changeBackgroundColor(e) {
+    console.log(e)
+    if (e.code == 'KeyA' || e.code == 'KeyB' || e.code == 'KeyC') {
+        title2.style.backgroundColor = 'black'
+    } else {
+        title2.style.backgroundColor = '#05A8AA'
+    }
+
+
+}
+
+window.addEventListener('keydown', (e) => changeBackgroundColor(e))
