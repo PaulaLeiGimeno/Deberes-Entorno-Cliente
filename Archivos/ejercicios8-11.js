@@ -112,17 +112,29 @@ primer  nivel  a  los  siguientes valores:
 let title2 = document.getElementsByTagName('h1')[0];
 
 function changeTitle(e) {
-    if (e.clientX < 500 && e.clientY < 500) {
+      if (e.clientX >= 0 && e.clientX <= 500 &&
+        e.clientY >= 0 && e.clientY <= 500) {
+
         title2.style.color = 'yellow';
-    }
-      if (e.clientX < 500 && e.clientY > 500) {
+
+    } else if (e.clientX >= 0 && e.clientX <= 500 &&
+               e.clientY > 500 && e.clientY <= 1000) {
+
         title2.style.color = 'red';
-    }
-     if (e.clientX > 500 && e.clientY < 500) {
+
+    } else if (e.clientX > 500 && e.clientX <= 1000 &&
+               e.clientY >= 0 && e.clientY <= 500) {
+
         title2.style.color = 'blue';
-    }
-      if (e.clientX == 500 && e.clientY > 500) {
+
+    } else if (e.clientX > 500 && e.clientX <= 1000 &&
+               e.clientY > 500 && e.clientY <= 1000) {
+
         title2.style.color = 'green';
+
+    } else {
+
+        title2.style.color = 'white';
     }
 }
 
@@ -150,3 +162,5 @@ function changeBackgroundColor(e) {
 }
 
 window.addEventListener('keydown', (e) => changeBackgroundColor(e))
+
+
