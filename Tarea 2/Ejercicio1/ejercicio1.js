@@ -45,7 +45,7 @@ const validateForm = (e) => {
         isCorrect = false
     }
 
-    if (regexDni.test(dniInput.value) != true || dniInput.value.length != 8) {
+    if (regexDni.test(dniInput.value) == false || dniInput.value.length != 8) {
         alertmsg = alertmsg + '\nTHE NUMBERS MASON'
         dniInput.style.backgroundColor = '#ba2d2d'
         isCorrect = false
