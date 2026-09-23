@@ -14,36 +14,32 @@ introducidos son correctos y se borrarán los datos introducidos en el formulari
 let form = document.getElementsByTagName('form')[0];
 let data = document.getElementsByTagName('input');
 let inputBox = document.getElementsByClassName('inputs');
-let alertmsg = '';
-let isCorrect = true;
+let alertmsg = [];
 
 
 function isWrong(wrongElement) {
-    isCorrect = false;
     wrongElement.style.backgroundColor = "#ba2d2d";
 }
 
 function validateForm(e) {
     e.preventDefault();
-    isCorrect = true;
-    alertmsg = '';
+    alertmsg = [];
     for (let i = 0; i < data.length - 1; i++) {
         data[i].style.backgroundColor = "white";
     }
 
     for (let i = 0; i < data.length - 1; i++) {
         if (data[i].value.length == 0) {
-            console.log(data[i].value + 'está vacío')
-            alertmsg = "Rellena todos los campos"
+            alertmsg.push('Rellena todos los campos');
             isWrong(data[i])
         }
     }
-    if (isCorrect) {
+    if (alertmsg.length===0) {
         for (let i = 0; i < data.length - 2; i++) {
             let regex = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/;
             if (regex.test(data[i].value) == false) {
                 isWrong(data[i])
-                alertmsg = 'Los campos de nombre y apellidos deben estar compuestos de letras'
+               alertmsg.push('Los campos de nombre y apellidos deben estar compuestos de letras');
             }
         }
 
@@ -51,16 +47,16 @@ function validateForm(e) {
         if (regex.test(data[3].value) == false) {
             isWrong(data[3])
             console.log('aaaaaa')
-            alertmsg = alertmsg + 'El correo es incorrecto'
+            alertmsg.push('El correo es incorrecto');
         }
 
     }
 
-    if (isCorrect) {
+    if (alertmsg.length===0) {
         alert("Todo bien, todo correcto. Y yo que me alegro")
         form.reset();
     } else {
-        alert(alertmsg)
+        alert(alertmsg.join('\n'))
     }
 
 }
