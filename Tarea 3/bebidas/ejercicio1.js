@@ -4,11 +4,12 @@ con tres textos sobreimpuestos: 'café', 'infusions' y 'alcohol'.
 */
 
 const tableRow = document.getElementsByTagName('tr')[0];
-
 let coffeeTd = document.getElementsByTagName('td')[0];
 
 
 coffeeTd.style.backgroundImage = 'url(src/cafe/1.jpg)';
+
+
 
 
 let alcoholTd = document.createElement('td');
@@ -31,6 +32,15 @@ tableRow.appendChild(teasTd);
 teasTd.appendChild(teasH1);
 teasTd.style.backgroundImage = 'url(src/infusiones/1.jpg)';
 
+
+let tds = document.getElementsByTagName('td')
+for (let i = 0; i < tds.length; i++) {
+    tds[i].style.width = '200px';
+    tds[i].style.height = '200px';
+    tds[i].style.backgroundSize = 'cover';
+    tds[i].style.backgroundPosition = 'center';
+
+}
 
 
 

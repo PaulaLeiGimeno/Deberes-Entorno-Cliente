@@ -3,17 +3,38 @@ Actividad 2 – Implementa un script que permita que al pulsar sobre las imágen
 éstas se eliminen y sean reemplazadas por las cinco imágenes correspondientes a cada apartado, incluidas en la 
 carpeta src proporcionada -hay 5 imágenes para cada categoría: café, infusiones y alcohol-. 
 */
-const imgsArray = [1, 2, 3, 4, 5];
-let indexes=[1,1,1]
 
-let coffee = document.getElementsByTagName('td')[0];
-let alcohol = document.getElementsByTagName('td')[1];
-let tea = document.getElementsByTagName('td')[2];
 
-function changeImg(){
-let newCoffee=document.createElement('td');
-newCoffee.style.backgroundImage = 'url(src/cafe/'+imgsArray[2]+'.jpg)';
-tableRow.replaceChild(newCoffee,coffee)
+
+function showImages(i) {
+
+    let folder;
+    switch (i) {
+        case 0:
+            folder = 'cafe'
+            break;
+        case 1:
+            folder = 'alcohol'
+            break;
+        case 2:
+            folder = 'infusiones'
+            break;
+    }
+    document.getElementsByTagName('tr')[0].remove();
+    document.getElementsByTagName('tbody')[0].appendChild(document.createElement('tr'))
+    for (let i = 1; i < 6; i++) {
+        let newTd = document.createElement('td')
+        document.getElementsByTagName('tr')[0].appendChild(newTd)
+
+        let newImg = document.createElement('img');
+        newTd.appendChild(newImg)
+        newImg.src = 'src/' + folder + '/' + i + '.jpg';
+        newImg.setAttribute('type', 'list')
+    }
+    doTheImagesExist()
+}
+for (let index = 0; index < 3; index++) {
+    document.getElementsByTagName('td')[index].addEventListener('click', () => showImages(index))
+
 }
 
-coffee.addEventListener('click', changeImg)
