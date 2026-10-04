@@ -67,15 +67,10 @@ let checkNames = () => {
 
 let validateForm = (event) => {
     event.preventDefault();
-
-
     errorAlert = [];
-
     checkIfEmpty();
     checkNames();
     checkPhone();
-
-
     if (errorAlert.length === 0) {
         alert('Datos correctos');
         form.reset();
@@ -83,5 +78,6 @@ let validateForm = (event) => {
         alert(errorAlert.join('\n'));
     }
 }
+
 form.addEventListener('submit', (event) => validateForm(event))
 
