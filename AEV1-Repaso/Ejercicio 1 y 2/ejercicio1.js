@@ -1,6 +1,3 @@
-
-
-
 const fruitOrVeggie = document.getElementsByTagName('h1')[0];
 const categories = document.getElementsByTagName('p');
 const nameFood = document.getElementsByTagName('h2')[0];
@@ -14,7 +11,7 @@ let counter = 1;
 let currentImageFood = '';
 
 const checkFruitOrVeggie = () => {
-    if (fruitOrVeggie.textContent == 'Frutas') {
+    if (fruitOrVeggie.textContent === 'Frutas') {
         names = ['Naranja', 'Fresa', 'Melón  blanco', 'Sandía', 'Melocotón']
         photoArray = ['frutas/orange', 'frutas/strawberry', 'frutas/melon', 'frutas/watermelon', 'frutas/peach']
 
@@ -40,13 +37,13 @@ const mouseOver = (i) => {
     categories[i].style.opacity = '1'
 
 
-    let newVignete = document.createElement('div');
-    newVignete.setAttribute('class', 'vignette');
-    let newVigneteImg = document.createElement('img');
-    newVignete.appendChild(newVigneteImg);
-    newVigneteImg.setAttribute('src', './images/' + photoArray[i] + '/1.jpg');
-    newVigneteImg.style.opacity = '0.5'
-    categories[i].appendChild(newVignete)
+    let newVignette = document.createElement('div');
+    newVignette.setAttribute('class', 'vignette');
+    let newVignetteImg = document.createElement('img');
+    newVignette.appendChild(newVignetteImg);
+    newVignetteImg.setAttribute('src', './images/' + photoArray[i] + '/1.jpg');
+    newVignetteImg.style.opacity = '0.5'
+    categories[i].appendChild(newVignette)
 
 
     nameFood.textContent = names[i]
@@ -71,7 +68,7 @@ for (let i = 0; i < names.length; i++) {
 }
 
 const prevImage = () => {
-    if (counter == 1) {
+    if (counter === 1) {
         counter = 4
     } else {
         counter--
@@ -80,7 +77,7 @@ const prevImage = () => {
 
 }
 const nextImage = () => {
-    if (counter == 4) {
+    if (counter === 4) {
         counter = 1
     } else {
         counter++

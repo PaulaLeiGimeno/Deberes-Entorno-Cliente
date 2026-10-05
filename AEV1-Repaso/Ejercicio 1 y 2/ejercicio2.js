@@ -36,11 +36,11 @@ const validateForm = (e) => {
     if (!regex.test(input.value)) {
         alert('Has introducido un caracter no permitido')
     } else {
-        if (input.value == 'Frutas' || input.value == 'frutas') {
+        if (input.value === 'Frutas' || input.value === 'frutas') {
             fruitOrVeggie.textContent = 'Frutas'
             checkFruitOrVeggie();
             closeModalScreen()
-        } else if (input.value == 'Verduras' || input.value == 'verduras') {
+        } else if (input.value === 'Verduras' || input.value === 'verduras') {
             fruitOrVeggie.textContent = 'Verduras'
             checkFruitOrVeggie();
             closeModalScreen()
@@ -50,8 +50,6 @@ const validateForm = (e) => {
     }
 
 }
-
-
 
 
 const showModalScreen = () => {

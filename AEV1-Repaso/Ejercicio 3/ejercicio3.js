@@ -54,7 +54,7 @@ changeImg()
 
 const goToPrevGal = () => {
     whatFolder = 0
-    if (whatGallery == 0) {
+    if (whatGallery === 0) {
         whatGallery = 2
     } else {
         whatGallery--
@@ -64,7 +64,7 @@ const goToPrevGal = () => {
 }
 const goToNextGal = () => {
     whatFolder = 0
-    if (whatGallery == 2) {
+    if (whatGallery === 2) {
         whatGallery = 0
     } else {
         whatGallery++
@@ -73,8 +73,8 @@ const goToNextGal = () => {
 }
 const goToPrevFolder = () => {
 
-    if (whatGallery != 0) {
-        if (whatFolder == 0) {
+    if (whatGallery !== 0) {
+        if (whatFolder === 0) {
             whatFolder = (galleries[whatGallery].length - 1)
         } else {
             whatFolder--
@@ -83,8 +83,8 @@ const goToPrevFolder = () => {
     changeImg()
 }
 const goToNextFolder = () => {
-    if (whatGallery != 0) {
-        if (whatFolder == (galleries[whatGallery].length - 1)) {
+    if (whatGallery !== 0) {
+        if (whatFolder === (galleries[whatGallery].length - 1)) {
             whatFolder = 0
         } else {
             whatFolder++
@@ -137,7 +137,7 @@ const showAllImages = () => {
         let newTd = document.createElement('td');
         let newImage = document.createElement('img');
         newImage.setAttribute('src', ('./src/' + galleries[whatGallery][whatFolder] + '/' + i + '.jpg'))
-        newTd.setAttribute('id', i)
+        newTd.setAttribute('id', i.toString())
         newTd.appendChild(newImage)
         newTr.appendChild(newTd);
 
