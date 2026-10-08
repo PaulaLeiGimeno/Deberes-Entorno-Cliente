@@ -1,0 +1,46 @@
+body {
+    background-color: #efefef;
+    font-family: Arial;
+    color: #333;
+    line-height: 1.4em;
+}
+
+main {
+    width: 800px;
+    margin: auto;
+    background-color: #FFF;
+    padding: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+aside {
+    width: 250px;
+}
+
+.imagenes {
+    width: 800px;
+    margin: auto;
+    background-color: #FFF;
+    padding: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+article {
+    width: 525px;
+    height: 625px;
+}
+
+h1 {
+    font-size: 25px;
+    height: 400px;
+    background: url("https://www.lovevalencia.com/wp-content/uploads/2010/10/ciudad.jpg") no-repeat;
+    line-height: 150px;
+    text-align: center;
+    color: #fff;
+}
+
+ul {
+    list-style-type: none;
+}
