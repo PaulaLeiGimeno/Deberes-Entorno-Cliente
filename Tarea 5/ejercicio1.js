@@ -71,7 +71,7 @@ const deleteOne = () => {
 }
 const deleteAll = () => {
     window.localStorage.clear();
-    alert('Todos los usuarios borrados')
+    alert('Todos los datos borrados')
 }
 deleteOneButtons[0].addEventListener('click', deleteOne)
 deleteAllButtons[0].addEventListener('click', deleteAll)
