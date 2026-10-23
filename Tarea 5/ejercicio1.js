@@ -9,7 +9,7 @@ Cuando pulse “Borrar registro”,borrará el usuario con el DNI indicado. Si s
 borrarán todos los registros guardados.
 */
 const inputs = document.getElementsByTagName('input');
-const forms = document.getElementsByTagName('form');
+
 const saveData = (e) => {
     e.preventDefault();
     let nameInput = inputs[0].value;
@@ -27,14 +27,13 @@ const saveData = (e) => {
             'dni': dniInput
         }
         window.localStorage.setItem(dniInput, JSON.stringify(obj));
-        console.log(obj)
     }
 }
 
-forms[0].addEventListener('submit', (e) => saveData(e))
+document.getElementsByTagName('form')[0].addEventListener('submit', (e) => saveData(e))
 
-const showDataButtons = document.getElementsByName('button_get_data')
-const showDataHere = document.getElementsByName('print_data');
+const showDataButton = document.getElementsByName('button_get_data')[0]
+const showDataHere = document.getElementsByName('print_data')[0];
 
 const showData = () => {
     if (document.getElementsByName('newP').length > 0) {
@@ -51,12 +50,12 @@ const showData = () => {
             ' | Segundo apellido: ' + obj.sName +
             ' | DNI: ' + obj.dni;
 
-        showDataHere[0].appendChild(newP)
+        showDataHere.appendChild(newP)
     } else {
         alert('Usuario no encontrado')
     }
 }
-showDataButtons[0].addEventListener('click', showData)
+showDataButton.addEventListener('click', showData)
 
 const deleteOneButtons = document.getElementsByName('button_delete_item');
 const deleteAllButtons = document.getElementsByName('button_delete_all');
@@ -65,13 +64,14 @@ let dniToDelete = document.getElementsByName('delete_item')[0].value;
 const deleteOne = () => {
     if (window.localStorage.getItem(dniToDelete)) {
         window.localStorage.removeItem(dniToDelete);
+        alert('Un usuario borrado')
+    }else{
+        alert('Usuario no encontrado')
     }
 }
 const deleteAll = () => {
-
     window.localStorage.clear();
-
-
+    alert('Todos los usuarios borrados')
 }
 deleteOneButtons[0].addEventListener('click', deleteOne)
 deleteAllButtons[0].addEventListener('click', deleteAll)
