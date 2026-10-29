@@ -1,0 +1,279 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Desarrollo Web Entorno Cliente</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- One -->
+        <section id="one" class="wrapper style2 fullscreen spotlights">
+            <section>
+                <div class="content">
+                    <div class="inner">
+                        <h2>Ejercicio 1:</h2>
+                        <div class="table-wrapper">
+                            <p>
+                                Implementa la lógica necesaria para que cuando el usuario introduzca un término de
+                                búsqueda -el nombre de un Pokémon-, se realice una
+                                petición GET a la API Pública siguiente:
+                                <a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer"
+                                    style="color: black; text-decoration: underline; font-weight: bold;">PokéAPI</a>.<br>
+                                A partir de los datos del Pokémon obtenidos de la respuesta de la petición GET, se
+                                deberá implementar un carrusel que permita visualizar las siguientes cuatro imágenes:
+                                front_default, back_default, front_shiny, back_shiny. Mediante los botones anterior y
+                                siguiente, el carrusel deberá permitir pasar de la primera imagen a la última y
+                                viceversa.
+                            </p>
+                            <div>
+                                 <h3>Pokemon</h3>
+                                <input type="text" name="pokemon-search" placeholder="Nombre de un Pokémon..." style="margin-bottom: 1em;" />
+                                <button name="one">¡Pokemon!</button>
+                            </div>
+                            <div class="carousel-container" style="margin: 1.5em 0;">
+                                <img id="pokemon-sprite" src="" alt="Sprite de Pokémon" style="max-width: 150px; display: block;" />
+                                <p id="pokemon-sprite-info"></p>
+                            </div>
+                            <div>
+                                <button name="previous">Anterior</button>
+                                <button name="next">Siguiente</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Two -->
+        <section id="two" class="wrapper style2 fullscreen spotlights">
+            <section>
+                <div class="content">
+                    <div class="inner">
+                        <h2>Ejercicio 2:</h2>
+                        <div class="table-wrapper">
+                            <p>
+                                Implementa la lógica necesaria para que se pueda introducir un término de búsqueda -el
+                                nombre de una localización de la serie Rick and Morty-. Cuando el usuario pulse sobre el
+                                botón 'Buscar', se realizará una petición GET a la API Pública siguiente:
+                                <a href="https://rickandmortyapi.com/" target="_blank" rel="noopener noreferrer"
+                                    style="color: black; text-decoration: underline; font-weight: bold;">The Rick and
+                                    Morty API</a>.<br>
+                                A partir de los datos de la localización obtenida de la respuesta de la petición GET, se
+                                deberá mostrar un carrusel que devuelva el nombre, la dimensión y otro carrusel que
+                                muestre el nombre y la imagen de todos los personajes que aparecen en esa localización.
+                            </p>
+                            <div>
+                                <input type="text" name="location-search" placeholder="Nombre de la localización..." style="margin-bottom: 1em;" />
+                                <button name="two">¡Rick y Morty!</button>
+                            </div>
+                            <div style="margin: 1.5em 0;">
+                                <h3>Localización:</h3>
+                                <div id="location-info">
+                                    <p><strong>Nombre:</strong> <span id="location-name">-</span></p>
+                                    <p><strong>Dimensión:</strong> <span id="location-dimension">-</span></p>
+                                </div>
+                                <div>
+                                    <button name="previous-location">Anterior Localización</button>
+                                    <button name="next-location">Siguiente Localización</button>
+                                </div>
+                            </div>
+                            <div style="margin: 1.5em 0;">
+                                <h3>Personajes en esta localización:</h3>
+                                <div id="character-info">
+                                    <img id="character-img" src="" alt="" style="max-width: 150px; display: block;" />
+                                    <p id="character-name">-</p>
+                                </div>
+                                <div>
+                                    <button name="previous-character">Anterior Personaje</button>
+                                    <button name="next-character">Siguiente Personaje</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Three -->
+        <section id="three" class="wrapper style2 fullscreen spotlights">
+            <section>
+                <div class="content">
+                    <div class="inner">
+                        <h2>Ejercicio 3:</h2>
+                        <div class="table-wrapper">
+                            <p>
+                                Implementa la lógica necesaria para que se pueda introducir un término de búsqueda -una
+                                palabra en inglés-. Cuando el usuario pulse sobre el botón 'Buscar', se realizará una
+                                petición GET a la API Pública siguiente:
+                                <a href="https://dictionaryapi.dev/" target="_blank" rel="noopener noreferrer"
+                                    style="color: black; text-decoration: underline; font-weight: bold;">Free Dictionary
+                                    API</a>.<br>
+                                A partir de los datos obtenidos de las respuestas de las peticiones GET, se deberá
+                                implementar un carrusel que permita visualizar los sinónimos de la palabra buscada.
+                                Mediante los botones anterior y siguiente de cada palabra, el carrusel deberá permitir
+                                pasar del primer sinónimo al último y viceversa.<br>
+                                Si el usuario realiza la búsqueda de otras palabras, se irán acumulando de modo que se
+                                puedan visualizar todas las palabras consultadas.
+                            </p>
+                            <div>
+                                <input type="text" name="word-search" placeholder="Palabra en inglés..." style="margin-bottom: 1em;" />
+                                <button name="three">¡Diccionario!</button>
+                            </div>
+                            <div style="margin: 1.5em 0;">
+                                <h3>Carrusel de Sinónimos:</h3>
+                                <div id="synonym-display">
+                                    <p><strong>Palabra:</strong> <span id="synonym-word">-</span></p>
+                                    <p><strong>Sinónimo:</strong> <span id="synonym-text">-</span></p>
+                                </div>
+                                <div>
+                                    <button name="previous">Anterior</button>
+                                    <button name="next">Siguiente</button>
+                                </div>
+                            </div>
+                            <div style="margin: 1.5em 0;">
+                                <h3>Palabras consultadas:</h3>
+                                <div id="words-history">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Four -->
+        <section id="four" class="wrapper style2 fullscreen spotlights">
+            <section>
+                <div class="content">
+                    <div class="inner">
+                        <h2>Ejercicio 4:</h2>
+                        <div class="table-wrapper">
+                            <p>
+                                Implementa la lógica necesaria para que se pueda introducir un término de búsqueda -el
+                                nombre de un personaje de Star Wars-. Cuando el usuario pulse sobre el botón 'Buscar',
+                                se realizará una petición GET a la API Pública siguiente:
+                                <a href="https://swapi.dev/" target="_blank" rel="noopener noreferrer"
+                                    style="color: black; text-decoration: underline; font-weight: bold;">SWAPI (Star
+                                    Wars API)</a>.<br>
+                                A partir de los datos obtenidos de las respuestas de las peticiones GET, se deberá
+                                visualizar el nombre del personaje, su altura, su masa y las películas en las que
+                                aparece. De las películas en las que aparece se mostrará su título y su Opening Crawl.
+                            </p>
+                            <div>
+                                <input type="text" name="sw-search" placeholder="Personaje de Star Wars..." style="margin-bottom: 1em;" />
+                                <button name="four">¡Star Wars!</button>
+                            </div>
+                            <div style="margin: 1.5em 0;">
+                                <h3>Datos del personaje:</h3>
+                                <div id="sw-character-info">
+                                    <p><strong>Nombre:</strong> <span id="sw-name">-</span></p>
+                                    <p><strong>Altura:</strong> <span id="sw-height">-</span></p>
+                                    <p><strong>Masa:</strong> <span id="sw-mass">-</span></p>
+                                </div>
+                            </div>
+                            <div style="margin: 1.5em 0;">
+                                <h3>Películas:</h3>
+                                <div id="sw-film-info">
+                                    <h4 id="sw-film-title">-</h4>
+                                    <p id="sw-film-crawl"><em>Opening Crawl...</em></p>
+                                </div>
+                                <div>
+                                    <button name="previous">Anterior</button>
+                                    <button name="next">Siguiente</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Five -->
+        <section id="five" class="wrapper style2 fullscreen spotlights">
+            <section>
+                <div class="content">
+                    <div class="inner">
+                        <h2>Ejercicio 5:</h2>
+                        <div class="table-wrapper">
+                            <p>
+                                En la API de Rick y Morty (<a href="https://rickandmortyapi.com/" target="_blank"
+                                    rel="noopener noreferrer"
+                                    style="color: black; text-decoration: underline; font-weight: bold;">The Rick and
+                                    Morty API</a>), haz un carrusel que te permita navegar entre las varias páginas al
+                                buscar episodios
+                                (<code>https://rickandmortyapi.com/api/episode?page=${pageNumber}</code>). Por cada
+                                episodio, muestra el código y nombre del episodio.<br>
+                                Al hacer click en un episodio, muestra el nombre y la imagen de todos los personajes de
+                                ese episodio. Al hacer click en algún personaje, que dejen de mostrarse los personajes.
+                            </p>
+                            <div>
+                                <button name="five">¡Episodios!</button>
+                            </div>
+                            <div style="margin: 1.5em 0;">
+                                <h3>Episodios:</h3>
+                                <div id="episodes-container">
+
+                                </div>
+                                <div style="margin-top: 1em;">
+                                    <button name="previous">Anterior</button>
+                                    <button name="next">Siguiente</button>
+                                </div>
+                            </div>
+                            <div style="margin: 1.5em 0;">
+                                <h3>Personajes del episodio:</h3>
+                                <div id="episode-characters" style="display: flex; flex-wrap: wrap; gap: 1em;">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Six -->
+        <section id="six" class="wrapper style2 fullscreen spotlights">
+            <section>
+                <div class="content">
+                    <div class="inner">
+                        <h2>Ejercicio 6:</h2>
+                        <div class="table-wrapper">
+                            <p>
+                                Muestra una todos los Pokémon a partir de la API pública
+                                <a href="https://pokeapi.co/api/v2/pokemon?offset=00&limit=20" target="_blank"
+                                    rel="noopener noreferrer"
+                                    style="color: black; text-decoration: underline; font-weight: bold;">PokéAPI</a><br>
+                                Al pulsar Next o Prev, cambia de página (hacer un fetch al el next y previous que devuelve la respuesta)
+                            </p>
+                            <div>
+                                <button name="six">¡Tabla Pokémon!</button>
+                            </div>
+                            <div id="all-pokemons">
+                          
+                            </div>
+                            <div>
+                                <button name="previous">Previous</button>
+                                <button name="next">Next</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+    </div>
+
+    <script type="module" src="main.js"></script>
+
+
+</body>
+
+</html>
