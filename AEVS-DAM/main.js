@@ -234,7 +234,3 @@ wordButton.addEventListener('click', () => getWordsWordsWords(`https://api.dicti
 //EJERCICIO 4
 
 //EJERCICIO 5
-
-//EJERCICIO 6
-
-let allPokemon

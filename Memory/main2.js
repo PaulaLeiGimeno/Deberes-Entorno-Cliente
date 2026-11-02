@@ -1,70 +1,152 @@
 const squares = document.getElementsByClassName('photo');
 const title = document.getElementsByTagName('h1')[0];
-const spaguettis = ['spaghetti_aglio_e_olio.jpg', 'spaghetti_al_pesto_genovese.jpg', 'spaghetti_all_amatriciana.jpg',
-    'spaghetti_alla_bolognese.jpg', 'spaghetti_alla_carbonara.jpg', 'spaghetti_alla_puttanesca.jpg']
-const imgs = [3, 0, 5, 2, 1, 4, 3, 5, 0, 2, 4, 1];
-let turned = [];
 
+const spaguettis = [
+    'spaghetti_aglio_e_olio.jpg',
+    'spaghetti_al_pesto_genovese.jpg',
+    'spaghetti_all_amatriciana.jpg',
+    'spaghetti_alla_bolognese.jpg',
+    'spaghetti_alla_carbonara.jpg',
+    'spaghetti_alla_puttanesca.jpg'
+];
+
+const imgs = [3, 0, 5, 2, 1, 4, 3, 5, 0, 2, 4, 1];
+
+let turned = [];
 let gameOn = false;
+let isInitialized = false;
 
 const flip = (element, i) => {
 
+    // Prevent clicking already flipped cards during the game
+    if (gameOn && element.isFlipped) return;
+
     if (!element.isFlipped) {
         element.isFlipped = true;
-        element.style.backgroundImage = 'url(\"images/' + spaguettis[imgs[i]] + '\")';
-
+        element.style.backgroundImage =
+            `url("images/${spaguettis[imgs[i]]}")`;
     } else {
         element.isFlipped = false;
         element.style.backgroundImage = '';
     }
 
-    if (gameOn == true) {
+    if (gameOn && element.isFlipped) {
 
-        console.log('game starts');
+        turned.push({
+            value: imgs[i],
+            element: element
+        });
 
-        if (!element.isFlipped) {
-            turned.push(imgs[i])
-            if (turned.length == 2) {
-                if (turned[0] == turned[1]) {
-                    turned = []
-                } else {
-                    alert('GAME OVER')
-                    start();
-                }
+        if (turned.length === 2) {
+
+            if (turned[0].value === turned[1].value) {
+                // Match
+                turned = [];
+            } else {
+
+                // Show wrong pair briefly
+                setTimeout(() => {
+
+                    turned[0].element.isFlipped = false;
+                    turned[0].element.style.backgroundImage = '';
+
+                    turned[1].element.isFlipped = false;
+                    turned[1].element.style.backgroundImage = '';
+
+                    gameOver();
+
+                }, 500);
+
             }
-
         }
     }
-}
+};
 
 const start = () => {
+
     turned = [];
     gameOn = false;
+
+    // Shuffle cards
+    imgs.sort(() => Math.random() - 0.5);
+
     Array.from(squares).forEach((e, i) => {
 
-        e.style.backgroundColor = 'black'
-        e.style.backgroundImage = ''
-        e.setAttribute('isFlipped', false)
-        e.setAttribute('photo', i)
-        e.addEventListener('click', () => flip(e, i))
+        e.style.backgroundColor = 'black';
+        e.style.backgroundImage = '';
+        e.isFlipped = false;
+
+        if (!isInitialized) {
+            e.addEventListener('click', () => flip(e, i));
+        }
     });
 
-    let counter = 0;
-    let interval1 = setInterval(() => {
-        flip(squares[counter], counter)
-        counter++;
-        if (counter === imgs.length) {
-            clearInterval(interval1);
+    isInitialized = true;
+
+    // -------- Preview order (pairs together) --------
+
+    let indexes = [];
+    let previewImages = [];
+
+    imgs.forEach((value, index) => {
+
+        if (!indexes.includes(index)) {
+
+            let second = imgs.findIndex((v, i) => i !== index && v === value);
+
+            indexes.push(index);
+            previewImages.push(value);
+
+            indexes.push(second);
+            previewImages.push(value);
         }
+    });
+
+    // -------- Show preview --------
+
+    let counter = 0;
+
+    let interval = setInterval(() => {
+
+        let squareIndex = indexes[counter];
+
+        squares[squareIndex].isFlipped = true;
+        squares[squareIndex].style.backgroundImage =
+            `url("images/${spaguettis[previewImages[counter]]}")`;
+
+        counter++;
+
+        if (counter === indexes.length) {
+            clearInterval(interval);
+        }
+
     }, 500);
 
-    setTimeout(() => Array.from(squares).forEach((e, i) => { flip(e, i); gameOn = true; }), 6500)
+    // Hide all cards
+    setTimeout(() => {
 
-}
+        Array.from(squares).forEach(e => {
+            e.isFlipped = false;
+            e.style.backgroundImage = '';
+        });
 
+        gameOn = true;
 
+    }, (indexes.length * 500) + 500);
+};
 
+const gameOver = () => {
 
-title.addEventListener('click', () => start())
+    alert("GAME OVER");
 
+    gameOn = false;
 
+    Array.from(squares).forEach(e => {
+        e.isFlipped = false;
+        e.style.backgroundImage = '';
+    });
+
+    start();
+};
+
+title.addEventListener('click', start);
