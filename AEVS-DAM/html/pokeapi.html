@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>PokéAPI - Desarrollo Web</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <div style="padding: 1em;">
+            <a href="../index.html"><button>← Volver</button></a>
+        </div>
+
+        <!-- Exercise 1: Pokemon Sprite Carousel -->
+        <section id="one" class="wrapper style2 fullscreen spotlights">
+            <section>
+                <div class="content">
+                    <div class="inner">
+                        <h2>PokéAPI - Búsqueda de Pokémon</h2>
+                        <div class="table-wrapper">
+                            <p>
+                                Implementa la lógica necesaria para que cuando el usuario introduzca un término de
+                                búsqueda -el nombre de un Pokémon-, se realice una
+                                petición GET a la API Pública siguiente:
+                                <a href="https://pokeapi.co/" target="_blank" rel="noopener noreferrer"
+                                    style="color: black; text-decoration: underline; font-weight: bold;">PokéAPI</a>.<br>
+                                A partir de los datos del Pokémon obtenidos de la respuesta de la petición GET, se
+                                deberá implementar un carrusel que permita visualizar las siguientes cuatro imágenes:
+                                front_default, back_default, front_shiny, back_shiny. Mediante los botones anterior y
+                                siguiente, el carrusel deberá permitir pasar de la primera imagen a la última y
+                                viceversa.
+                            </p>
+                            <div>
+                                 <h3>Pokemon</h3>
+                                <input type="text" name="pokemon-search" placeholder="Nombre de un Pokémon..." style="margin-bottom: 1em;" />
+                                <button name="pokemon-btn">¡Pokemon!</button>
+                            </div>
+                            <div class="carousel-container" style="margin: 1.5em 0;">
+                                <img id="pokemon-sprite" src="" alt="Sprite de Pokémon" style="max-width: 150px; display: block;" />
+                                <p id="pokemon-sprite-info"></p>
+                            </div>
+                            <div>
+                                <button name="pokemon-prev">Anterior</button>
+                                <button name="pokemon-next">Siguiente</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Exercise 6: Paginated Pokemon Table -->
+        <section id="six" class="wrapper style2 fullscreen spotlights">
+            <section>
+                <div class="content">
+                    <div class="inner">
+                        <h2>PokéAPI - Tabla de Pokémon</h2>
+                        <div class="table-wrapper">
+                            <p>
+                                Muestra todos los Pokémon a partir de la API pública
+                                <a href="https://pokeapi.co/api/v2/pokemon?offset=00&limit=20" target="_blank"
+                                    rel="noopener noreferrer"
+                                    style="color: black; text-decoration: underline; font-weight: bold;">PokéAPI</a><br>
+                                Al pulsar Next o Prev, cambia de página (hacer un fetch al next y previous que devuelve la respuesta)
+                            </p>
+                            <div>
+                                <button name="table-btn">¡Tabla Pokémon!</button>
+                            </div>
+                            <div id="all-pokemons">
+                          
+                            </div>
+                            <div>
+                                <button name="table-prev">Previous</button>
+                                <button name="table-next">Next</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+    </div>
+
+    <script src="../js/pokeapi.js"></script>
+</body>
+</html>

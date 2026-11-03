@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Rick and Morty API - Desarrollo Web</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <div style="padding: 1em;">
+            <a href="../index.html"><button>← Volver</button></a>
+        </div>
+
+        <!-- Exercise 2: Location Search -->
+        <section id="two" class="wrapper style2 fullscreen spotlights">
+            <section>
+                <div class="content">
+                    <div class="inner">
+                        <h2>Rick and Morty - Localizaciones</h2>
+                        <div class="table-wrapper">
+                            <p>
+                                Implementa la lógica necesaria para que se pueda introducir un término de búsqueda -el
+                                nombre de una localización de la serie Rick and Morty-. Cuando el usuario pulse sobre el
+                                botón 'Buscar', se realizará una petición GET a la API Pública siguiente:
+                                <a href="https://rickandmortyapi.com/" target="_blank" rel="noopener noreferrer"
+                                    style="color: black; text-decoration: underline; font-weight: bold;">The Rick and
+                                    Morty API</a>.<br>
+                                A partir de los datos de la localización obtenida de la respuesta de la petición GET, se
+                                deberá mostrar un carrusel que devuelva el nombre, la dimensión y otro carrusel que
+                                muestre el nombre y la imagen de todos los personajes que aparecen en esa localización.
+                            </p>
+                            <div>
+                                <input type="text" name="location-search" placeholder="Nombre de la localización..." style="margin-bottom: 1em;" />
+                                <button name="rick-btn">¡Rick y Morty!</button>
+                            </div>
+                            <div style="margin: 1.5em 0;">
+                                <h3>Localización:</h3>
+                                <div id="location-info">
+                                    <p><strong>Nombre:</strong> <span id="location-name">-</span></p>
+                                    <p><strong>Dimensión:</strong> <span id="location-dimension">-</span></p>
+                                </div>
+                                <div>
+                                    <button name="previous-location">Anterior Localización</button>
+                                    <button name="next-location">Siguiente Localización</button>
+                                </div>
+                            </div>
+                            <div style="margin: 1.5em 0;">
+                                <h3>Personajes en esta localización:</h3>
+                                <div id="character-info">
+                                    <img id="character-img" src="" alt="" style="max-width: 150px; display: block;" />
+                                    <p id="character-name">-</p>
+                                </div>
+                                <div>
+                                    <button name="previous-character">Anterior Personaje</button>
+                                    <button name="next-character">Siguiente Personaje</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Exercise 5: Episode Browser -->
+        <section id="five" class="wrapper style2 fullscreen spotlights">
+            <section>
+                <div class="content">
+                    <div class="inner">
+                        <h2>Rick and Morty - Episodios</h2>
+                        <div class="table-wrapper">
+                            <p>
+                                En la API de Rick y Morty (<a href="https://rickandmortyapi.com/" target="_blank"
+                                    rel="noopener noreferrer"
+                                    style="color: black; text-decoration: underline; font-weight: bold;">The Rick and
+                                    Morty API</a>), haz un carrusel que te permita navegar entre las varias páginas al
+                                buscar episodios
+                                (<code>https://rickandmortyapi.com/api/episode?page=${pageNumber}</code>). Por cada
+                                episodio, muestra el código y nombre del episodio.<br>
+                                Al hacer click en un episodio, muestra el nombre y la imagen de todos los personajes de
+                                ese episodio. Al hacer click en algún personaje, que dejen de mostrarse los personajes.
+                            </p>
+                            <div>
+                                <button name="episodes-btn">¡Episodios!</button>
+                            </div>
+                            <div style="margin: 1.5em 0;">
+                                <h3>Episodios:</h3>
+                                <div id="episodes-container">
+
+                                </div>
+                                <div style="margin-top: 1em;">
+                                    <button name="episodes-prev">Anterior</button>
+                                    <button name="episodes-next">Siguiente</button>
+                                </div>
+                            </div>
+                            <div style="margin: 1.5em 0;">
+                                <h3>Personajes del episodio:</h3>
+                                <div id="episode-characters" style="display: flex; flex-wrap: wrap; gap: 1em;">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+    </div>
+
+    <script src="../js/rickandmorty.js"></script>
+</body>
+</html>

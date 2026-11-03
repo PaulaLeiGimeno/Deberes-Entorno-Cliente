@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>SWAPI (Star Wars) - Desarrollo Web</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <div style="padding: 1em;">
+            <a href="../index.html"><button>← Volver</button></a>
+        </div>
+
+        <!-- Exercise 4: Star Wars Characters -->
+        <section id="four" class="wrapper style2 fullscreen spotlights">
+            <section>
+                <div class="content">
+                    <div class="inner">
+                        <h2>SWAPI - Personajes de Star Wars</h2>
+                        <div class="table-wrapper">
+                            <p>
+                                Implementa la lógica necesaria para que se pueda introducir un término de búsqueda -el
+                                nombre de un personaje de Star Wars-. Cuando el usuario pulse sobre el botón 'Buscar',
+                                se realizará una petición GET a la API Pública siguiente:
+                                <a href="https://swapi.dev/" target="_blank" rel="noopener noreferrer"
+                                    style="color: black; text-decoration: underline; font-weight: bold;">SWAPI (Star
+                                    Wars API)</a>.<br>
+                                A partir de los datos obtenidos de las respuestas de las peticiones GET, se deberá
+                                visualizar el nombre del personaje, su altura, su masa y las películas en las que
+                                aparece. De las películas en las que aparece se mostrará su título y su Opening Crawl.
+                            </p>
+                            <div>
+                                <input type="text" name="sw-search" placeholder="Personaje de Star Wars..." style="margin-bottom: 1em;" />
+                                <button name="sw-btn">¡Star Wars!</button>
+                            </div>
+                            <div style="margin: 1.5em 0;">
+                                <h3>Datos del personaje:</h3>
+                                <div id="sw-character-info">
+                                </div>
+                            </div>
+                            <div style="margin: 1.5em 0;">
+                                <h3>Películas:</h3>
+                                <div id="sw-film-info">
+                                  
+                                </div>
+                                <div>
+                                    <button name="sw-prev">Anterior</button>
+                                    <button name="sw-next">Siguiente</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+    </div>
+
+    <script  type="module" src="../js/starwars.js"></script>
+</body>
+</html>

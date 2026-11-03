@@ -30,10 +30,10 @@ const getAllPokemon = async (url) => {
     nextPage = data.next;
     prevPage = data.previous;
 
-    let pokemonArray = Promise.all(data.results.map((e) => {
+    let newArray = Promise.all(data.results.map((e) => {
         return getData(e.url);
     }));
-    (await pokemonArray).map((e) => {
+    (await newArray).map((e) => {
         let obj = {
             "name": e.name,
             "fd": e.sprites.front_default,
