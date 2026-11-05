@@ -3,19 +3,18 @@
 let nextPage = '';
 let prevPage = '';
 let array = [];
+let favCharArray = []
 
 
 
-let tag = document.getElementsByClassName('tag')[0];
-let card = document.getElementsByClassName('card')[0]
+
+let card = document.getElementsByClassName('card')[1]
 let modal = document.getElementsByClassName('modal')[0];
 let favCharInput = document.getElementsByClassName('input')[0];
 let favCharButton = document.getElementsByClassName('send')[0];
 let form = document.getElementsByTagName('form')[0]
-let favImg = document.getElementsByTagName('img')[0];
 let favModal = document.getElementsByClassName('modal')[1];
 let header = document.getElementsByClassName('header')[0];
-
 
 const getData = async (url) => {
     try {
@@ -35,20 +34,18 @@ let getCharacter = async (url) => {
 
     nextPage = data.info.next
     prevPage = data.info.prev
-    console.log(data.results.episode)
-
-    await Promise.all(
-        data.results.map(async (characterData) => {
 
 
+    data.results.map(async characterData => {
         let promise = characterData.episode.map((chara) => {
             return getData(chara)
         })
+        let chapters = await Promise.all(promise)
 
         let obj = {
             "name": characterData.name,
             "img": characterData.image,
-            "episodes": rick
+            "episodes": chapters
         }
 
         array.push(obj)
@@ -56,36 +53,81 @@ let getCharacter = async (url) => {
 
 
     })
-    )
+
+
 
 }
 
 const showModal = (obj) => {
     modal.className = 'modal show-modal';
-
+    if (document.getElementsByTagName('p').length > 0) {
+        Array.from(document.getElementsByTagName('p')).map((p) => {
+            p.remove();
+        })
+    }
     obj.episodes.map((chapter) => {
-        let tag = document.createElement('span');
-        tag.setAttribute('class', 'tag');
-        tag.textContent = `${chapter.episode}: ${chapter.name}`;
-        card.appendChild(tag);
+        let p = document.createElement('p');
+        p.style.color = 'black'
+        p.textContent = `${chapter.episode}: ${chapter.name}`;
+        card.appendChild(p);
     })
 }
 
+const createFavContainer = (imgSrc, tagText) => {
+    let favImg = document.createElement('img');
+    let tag = document.createElement('span');
+    let container = document.createElement('div');
+
+    container.setAttribute('class', 'characterContainer')
+    tag.setAttribute('class', 'tag')
+
+    container.appendChild(favImg)
+    container.appendChild(tag)
+
+    container.addEventListener('click',()=> removeCharacterFromFavs(tagText))
+
+    document.getElementsByClassName('modal-content')[1].appendChild(container)
+
+    favImg.src = imgSrc;
+    tag.textContent = tagText;
+}
+
+
+const removeCharacterFromFavs=(name)=>{
+    window.localStorage.removeItem(name)
+    showFavModal()
+
+}
 const getOneCharacter = async (url, e) => {
     e.preventDefault();
+
     let data = await getData(url);
+    createFavContainer(data.results[0].image, data.results[0].name)
 
-    console.log(data.results)
-    favImg.src = data.results[0].image;
+    let obj = {
+        'imgSrc': data.results[0].image,
+        'tagText': data.results[0].name
+    }
 
-    console.log(data.results[0].name);
-    tag.textContent = data.results[0].name
+    window.localStorage.setItem(data.results[0].name, JSON.stringify(obj));
 
 }
 
 const showFavModal = () => {
+    if (document.getElementsByClassName('characterContainer').length > 0) {
+        Array.from(document.getElementsByClassName('characterContainer')).map((container) => {
+            container.remove();
+        })
+    }
+
     favModal.className = 'modal show-modal';
 
+    for (let i = 0; i < localStorage.length; i++) {
+
+        let data = JSON.parse(localStorage.getItem(localStorage.key(i)));
+
+        createFavContainer(data.imgSrc, data.tagText);
+    }
 }
 
 const createCard = (obj) => {
@@ -140,6 +182,6 @@ if (document.getElementsByClassName('card').length > 0) {
 }
 
 
-//getCharacter('https://rickandmortyapi.com/api/character');
+getCharacter('https://rickandmortyapi.com/api/character');
 form.addEventListener('submit', (e) => getOneCharacter(`https://rickandmortyapi.com/api/character/?name=${favCharInput.value}`, e))
 header.addEventListener('click', showFavModal)
