@@ -1,105 +1,99 @@
-
-const photos = document.getElementsByClassName('photo')
-const closeButton = document.getElementsByClassName('close-button')[0]
+const photos = document.getElementsByClassName('photo');
+const closeButton = document.getElementsByClassName('close-button')[0];
 const modal = document.getElementsByClassName('modal')[0];
-const buttons = document.getElementsByTagName('button')
+const buttons = document.getElementsByTagName('button');
 
-let moviesData = []
+let moviesData = [];
 let characterCounter = 0;
-let characterArray = []
-let movieIndex = 0;
-
-
+let characterArray = [];
 
 const getData = async (url) => {
     try {
         const response = await fetch(url);
         if (response.ok) {
-            const data = await response.json();
-            return data;
+            return await response.json();
         }
+    } catch (error) {
+        console.error('Error al realizar la petición:', error);
     }
-    catch (error) {
-        console.log(error);
-    }
-}
+    return null;
+};
 
+// Carga las películas iniciales
 const getFilms = async (url) => {
-    let data = await getData(url);
-
-    data.results.map((movie) => {
-        let obj = {
+    const data = await getData(url);
+    if (data && data.results) {
+        moviesData = data.results.map((movie) => ({
             'title': movie.title,
             'director': movie.director,
             'release_date': movie.release_date,
             'characters': movie.characters,
-        }
-        moviesData.push(obj)
+        }));
+        
+        // Asignar los eventos a los pósters una vez obtenidos los datos
+        Array.from(photos).forEach((photo, i) => {
+            photo.addEventListener('click', () => openModalScreen(i));
+        });
+    }
+};
 
-    })
+// Obtiene el nombre del personaje por URL
+const getCharacterName = async (url) => {
+    const data = await getData(url);
+    return data ? data.name : 'Desconocido';
+};
 
+// Abre la ventana modal cargando personajes en orden correcto
+const openModalScreen = async (i) => {
+    if (!moviesData[i]) return;
 
-}
-
-const getCharacters = async (url) => {
-    let data = await getData(url);
-    characterArray.push(data.name)
-
-
-}
-
-
-const openModalScreen = (i) => {
     modal.className = 'modal show-modal';
     characterArray = [];
     characterCounter = 0;
-
-
-    Promise.all(moviesData[i].characters.map((character) => {
-        getCharacters(character)
-    }))
-
-
-
+    
     document.getElementsByTagName('h1')[1].textContent = moviesData[i].title;
-    document.getElementsByTagName('h2')[0].textContent = moviesData[i].director;
-    document.getElementsByTagName('h3')[0].textContent = moviesData[i].release_date;
-    document.getElementsByTagName('h4')[0].textContent = characterArray[characterCounter];
-}
+    document.getElementsByTagName('h2')[0].textContent = `Director: ${moviesData[i].director}`;
+    document.getElementsByTagName('h3')[0].textContent = `Estreno: ${moviesData[i].release_date}`;
+    document.getElementsByTagName('h4')[0].textContent = 'Cargando personajes...';
+
+    // Esperar a que se resuelvan todas las promesas de los personajes
+    characterArray = await Promise.all(
+        moviesData[i].characters.map((charUrl) => getCharacterName(charUrl))
+    );
+
+    if (characterArray.length > 0) {
+        document.getElementsByTagName('h4')[0].textContent = characterArray[characterCounter];
+    }
+};
 
 const closeModalScreen = () => {
-    modal.className = 'modal'
+    modal.className = 'modal';
+};
 
-}
-
-Array.from(photos).map((photo, i) => {
-    photo.addEventListener('click', () => openModalScreen(i))
-    movieIndex = i
-})
-closeButton.addEventListener('click', closeModalScreen)
-
-
-
-
+closeButton.addEventListener('click', closeModalScreen);
 
 const next = () => {
+    if (characterArray.length === 0) return;
     if (characterCounter === characterArray.length - 1) {
-        characterCounter = 0
+        characterCounter = 0;
     } else {
-        characterCounter++
+        characterCounter++;
     }
-    document.getElementsByTagName('h4')[0].textContent = characterArray[characterCounter]
-}
+    document.getElementsByTagName('h4')[0].textContent = characterArray[characterCounter];
+};
+
 const prev = () => {
+    if (characterArray.length === 0) return;
     if (characterCounter === 0) {
-        characterCounter = characterArray.length - 1
+        characterCounter = characterArray.length - 1;
     } else {
         characterCounter--;
     }
-    document.getElementsByTagName('h4')[0].textContent = characterArray[characterCounter]
-}
+    document.getElementsByTagName('h4')[0].textContent = characterArray[characterCounter];
+};
 
-buttons[0].addEventListener('click', () => prev())
-buttons[1].addEventListener('click', () => next())
+buttons[0].addEventListener('click', prev);
+buttons[1].addEventListener('click', next);
 
-getFilms('https://swapi.dev/api/films')
+// Inicializar la carga de las películas
+getFilms('https://swapi.dev/api/films');
