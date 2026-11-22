@@ -1,84 +1,64 @@
-const addPokemonForm = document.getElementsByTagName('form')[0];
-const searchPokemonForm = document.getElementsByTagName('form')[1];
-const addPokemonInput = document.getElementsByTagName('input')[0];
-const searchPokemonInput = document.getElementsByTagName('input')[1];
-const images = document.getElementsByTagName('img');
 
-// Función genérica para obtener datos
+let getPokemonForm = document.getElementsByTagName('form')[0];
+let getPokemonInput = document.getElementsByTagName('input')[0];
+
+
+let searchPokemonForm = document.getElementsByTagName('form')[1];
+let searchPokemonInput = document.getElementsByTagName('input')[1];
+
+let pokemonData = [];
+
 const getData = async (url) => {
     try {
         const response = await fetch(url);
         if (response.ok) {
-            const data = await response.json();
-            return data;
-        } else {
-            return null;
+            return await response.json();
         }
     } catch (error) {
-        console.error('Error fetching data:', error);
-        return null;
+        console.error('Error al realizar la petición:', error);
     }
+    return null;
 };
 
-// Obtener datos desde PokeAPI y guardarlos en LocalStorage
-const getPokemonsFromAPI = async (url, e) => {
+
+const getPokemons = async (e, url) => {
     e.preventDefault();
-    const pokemonName = addPokemonInput.value.trim().toLowerCase();
-    
-    if (!pokemonName) return;
 
-    const data = await getData(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
-    
-    if (data) {
-        const obj = {
-            "front_default": data.sprites.front_default,
-            "back_default": data.sprites.back_default,
-            "front_shiny": data.sprites.front_shiny,
-            "back_shiny": data.sprites.back_shiny,
-        };
-        window.localStorage.setItem(data.name, JSON.stringify(obj));
-        alert(`¡${data.name.toUpperCase()} guardado en LocalStorage!`);
-        addPokemonForm.reset();
-    } else {
-        alert('No se encontró el Pokémon en la API');
-    }
+    const data = await getData(url);
+    let newArray = [
+        data.sprites.front_default,
+        data.sprites.back_default,
+        data.sprites.front_shiny,
+        data.sprites.back_shiny
+    ];
+
+    window.localStorage.setItem(data.name, JSON.stringify(newArray));
+
+    getPokemonForm.reset();
+
 };
+for (let i = 0; i < 4; i++) {
+    document.getElementsByTagName('img')[i].addEventListener('click', () => changeBigImg(i))
+}
 
-// Cambiar la imagen principal
-const changeBigImg = (source) => {
-    images[4].src = source;
-};
+const changeBigImg = (i) => {
+    document.getElementsByTagName('img')[4].src = pokemonData[i]
+}
 
-// Obtener datos guardados en LocalStorage y renderizarlos
-const getPokemonsFromLocalStorage = (name, e) => {
+const searchPokemons = (e) => {
     e.preventDefault();
-    const searchName = name.trim().toLowerCase();
-    const pokemonData = JSON.parse(window.localStorage.getItem(searchName));
+    pokemonData = JSON.parse(window.localStorage.getItem(searchPokemonInput.value.trim().toLowerCase()));
+    console.log(pokemonData)
 
-    if (pokemonData) {
-        const spriteArray = [
-            pokemonData.front_default, 
-            pokemonData.back_default, 
-            pokemonData.front_shiny, 
-            pokemonData.back_shiny, 
-            pokemonData.front_default
-        ];
-
-        Array.from(images).forEach((image, i) => {
-            if (spriteArray[i]) {
-                image.src = spriteArray[i];
-            }
-        });
-
-        for (let i = 0; i < 4; i++) {
-            // Se usa onclick en lugar de addEventListener para reemplazar el handler anterior y evitar duplicados
-            images[i].onclick = () => changeBigImg(spriteArray[i]);
-        }
-    } else {
-        alert('No hay un Pokémon con ese nombre guardado');
-    }
+    pokemonData.map((pokemonSprite, i) => {
+        document.getElementsByTagName('img')[i].src = pokemonSprite;
+    })
+    document.getElementsByTagName('img')[1].src = pokemonData[0];
     searchPokemonForm.reset();
-};
+}
 
-addPokemonForm.addEventListener('submit', (e) => getPokemonsFromAPI('', e));
-searchPokemonForm.addEventListener('submit', (e) => getPokemonsFromLocalStorage(searchPokemonInput.value, e));
+
+
+
+getPokemonForm.addEventListener('submit', (e) => getPokemons(e, `https://pokeapi.co/api/v2/pokemon/${getPokemonInput.value.trim().toLowerCase()}`))
+searchPokemonForm.addEventListener('submit', (e) => searchPokemons(e))
