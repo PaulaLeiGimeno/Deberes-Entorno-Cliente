@@ -1,0 +1,43 @@
+<div class="lesson-page">
+  <header class="lesson-header">
+    <span class="pdf-tag">PDF 2 · 2-DWEC_Introducción_a_TypeScript.pdf</span>
+    <h1>Introducción a TypeScript</h1>
+    <p class="lead">
+      TypeScript es JavaScript mejorado con <strong>tipado estático</strong>. Tipos básicos:
+      <code>boolean</code>, <code>number</code>, <code>string</code>, <code>null</code>, <code>undefined</code>.
+    </p>
+  </header>
+
+  <section class="lesson-section">
+    <h2>1. Variables y Tipos</h2>
+    <p>Si declaramos una variable con valor inicial, TypeScript infiere su tipo y no permite cambiarlo después (salvo que sea <code>any</code>).</p>
+    <app-code-block filename="variables.ts" [code]="variablesCode"></app-code-block>
+  </section>
+
+  <section class="lesson-section">
+    <h2>2. Funciones: tipado, opcionales (<code>?</code>) y valores por defecto</h2>
+    <app-code-block filename="funciones.ts" [code]="functionsCode"></app-code-block>
+
+    <div class="demo-box">
+      <p><strong>Prueba en vivo</strong> (función con parámetro opcional/por defecto):</p>
+      <div class="inline-controls">
+        <input type="text" [(ngModel)]="userName" placeholder="Escribe un nombre o déjalo vacío" class="input-field" />
+        <span class="result-pill">{{ greet(userName) }}</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="lesson-section">
+    <h2>3. Arrays, Tuplas y Unión de Tipos (<code>|</code>)</h2>
+    <app-code-block filename="arrays-uniones.ts" [code]="arraysCode"></app-code-block>
+
+    <div class="demo-box">
+      <p><strong>Unión de tipos (<code>string | number</code>):</strong></p>
+      <div class="inline-controls">
+        <button type="button" class="btn-secondary" (click)="setUnionAsNumber()">Asignar number (2026)</button>
+        <button type="button" class="btn-secondary" (click)="setUnionAsString()">Asignar string ('Jueves')</button>
+        <span class="result-pill">Valor actual: {{ unionValue }} (tipo: {{ typeof unionValue }})</span>
+      </div>
+    </div>
+  </section>
+</div>

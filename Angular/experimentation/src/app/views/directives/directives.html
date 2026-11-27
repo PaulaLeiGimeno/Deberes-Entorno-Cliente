@@ -1,0 +1,38 @@
+<div class="lesson-page">
+  <header class="lesson-header">
+    <span class="pdf-tag">PDF 5 · 5-DWEC_Angular_Directivas.pdf</span>
+    <h1>Directivas en Angular</h1>
+    <p class="lead">
+      Instrucciones en HTML que extienden su funcionalidad:
+      <strong>Directivas de Atributos</strong> (<code>NgClass</code>, <code>NgStyle</code>, <code>NgModel</code>),
+      <strong>Directivas Estructurales</strong> (sustituidas por Control Flow) y <strong>Componentes</strong>.
+    </p>
+  </header>
+
+  <section class="lesson-section">
+    <h2>1. <code>[ngClass]</code> — Clases CSS dinámicas</h2>
+    <p>Se importa <code>NgClass</code> desde <code>&#64;angular/common</code> y se añade a <code>imports</code> del componente.</p>
+    <app-code-block filename="ng-class.ts" [code]="ngClassCode"></app-code-block>
+    <div class="demo-box inline-controls">
+      <button type="button" class="btn-primary" (click)="test = !test">Alternar clase (test = {{ test }})</button>
+      <p [ngClass]="test ? 'demo-red' : 'demo-green'" style="margin: 0;">
+        Hello World con [ngClass]
+      </p>
+    </div>
+  </section>
+
+  <section class="lesson-section">
+    <h2>2. <code>[ngStyle]</code> — Estilos en línea dinámicos</h2>
+    <app-code-block filename="ng-style.ts" [code]="ngStyleCode"></app-code-block>
+    <div class="demo-box stack">
+      <div class="inline-controls">
+        <button type="button" class="btn-secondary" (click)="bgColor = '#fef08a'">Fondo Amarillo</button>
+        <button type="button" class="btn-secondary" (click)="bgColor = '#bae6fd'">Fondo Azul</button>
+        <button type="button" class="btn-secondary" (click)="fontSize = fontSize + 2">Aumentar fuente ({{ fontSize }}px)</button>
+      </div>
+      <div class="style-preview" [ngStyle]="{ background: bgColor, 'font-size.px': fontSize }">
+        Hello World con [ngStyle]
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,49 @@
+<div class="lesson-page">
+  <header class="lesson-header">
+    <span class="pdf-tag">PDF 1 · 1-DWEC_Introducción_a_Angular.pdf</span>
+    <h1>Introducción a Angular</h1>
+    <p class="lead">
+      Angular es un framework de desarrollo en entorno cliente creado por Google para construir
+      <strong>Single-Page Applications (SPA)</strong> usando HTML y TypeScript, basado en
+      <strong>componentes web</strong> reutilizables.
+    </p>
+  </header>
+
+  <section class="lesson-section">
+    <h2>1. Angular CLI (<code>ng</code>)</h2>
+    <p>Utilidad de consola para automatizar tareas repetitivas como crear proyectos, generar componentes o lanzar el servidor.</p>
+    <app-code-block filename="terminal" [code]="cliCommands"></app-code-block>
+  </section>
+
+  <section class="lesson-section">
+    <h2>2. Estructura clave de <code>src/</code> (Interactivo)</h2>
+    <p>Haz click en un archivo para ver su función dentro de Angular:</p>
+    <div class="demo-box">
+      <div class="pill-group">
+        @for (file of projectFiles; track file.name) {
+          <button
+            type="button"
+            class="pill-btn"
+            [class.active]="selectedFile === file.name"
+            (click)="selectedFile = file.name"
+          >
+            {{ file.name }}
+          </button>
+        }
+      </div>
+      <div class="result-banner">
+        <strong>{{ selectedFile }}:</strong> {{ selectedDescription }}
+      </div>
+    </div>
+  </section>
+
+  <section class="lesson-section">
+    <h2>3. Anatomía de un Componente</h2>
+    <p>
+      Al ejecutar <code>ng generate component components/header</code> se crean 4 archivos:
+      <code>.ts</code> (lógica), <code>.html</code> (vista), <code>.css</code> (estilos) y <code>.spec.ts</code> (tests).
+      Para usarlo en otro HTML se instancia mediante su <code>selector</code>: <code>&lt;app-header&gt;&lt;/app-header&gt;</code>.
+    </p>
+    <app-code-block filename="header.ts" [code]="componentCode"></app-code-block>
+  </section>
+</div>

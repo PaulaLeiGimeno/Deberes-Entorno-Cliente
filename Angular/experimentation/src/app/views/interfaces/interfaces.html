@@ -1,0 +1,37 @@
+<div class="lesson-page">
+  <header class="lesson-header">
+    <span class="pdf-tag">PDF 8 · 8-DWEC_Angular_Interfaces.pdf</span>
+    <h1>Interfaces en TypeScript / Angular</h1>
+    <p class="lead">
+      Las interfaces definen la estructura (contrato) de un objeto para usarlo como tipo propio.
+      Se guardan en archivos <code>*.interface.ts</code> y permiten propiedades opcionales con <code>?</code>.
+    </p>
+  </header>
+
+  <section class="lesson-section">
+    <h2>1. Definición y Uso</h2>
+    <app-code-block filename="article.interface.ts" [code]="interfaceCode"></app-code-block>
+    <app-code-block filename="component.ts" [code]="usageCode"></app-code-block>
+  </section>
+
+  <section class="lesson-section">
+    <h2>2. Objeto tipado con propiedad opcional <code>link?</code></h2>
+    <div class="demo-box stack">
+      <div class="inline-controls">
+        <button type="button" class="btn-primary" (click)="toggleLink()">
+          {{ showOptionalLink ? 'Quitar propiedad opcional link' : 'Añadir propiedad opcional link' }}
+        </button>
+      </div>
+      <div class="article-preview">
+        <small>{{ article.miniTitle }}</small>
+        <h3>{{ article.title }}</h3>
+        @for (p of article.paragraph; track p) {
+          <p>{{ p }}</p>
+        }
+        @if (article.link) {
+          <a [href]="article.link" target="_blank">Enlace opcional: {{ article.link }}</a>
+        }
+      </div>
+    </div>
+  </section>
+</div>

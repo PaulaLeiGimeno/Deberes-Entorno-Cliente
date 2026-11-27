@@ -10,11 +10,7 @@ export class Menu {
   public isDisplaying: boolean = false
 
   public onClick(event: MouseEvent): void {
-    if (this.isDisplaying == true) {
-      this.isDisplaying = false
-    } else {
-      this.isDisplaying = true
-    }
+    this.isDisplaying = !this.isDisplaying;
 
   }
 }

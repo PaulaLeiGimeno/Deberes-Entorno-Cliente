@@ -1,1 +1,364 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global styles for Angular DWEC interactive guide */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: #f8fafc;
+  color: #1e293b;
+  line-height: 1.6;
+}
+
+code {
+  background: #e2e8f0;
+  color: #be123c;
+  padding: 0.12rem 0.38rem;
+  border-radius: 4px;
+  font-size: 0.88em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.lesson-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.lesson-header {
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 1.25rem;
+}
+
+.pdf-tag {
+  display: inline-block;
+  background: #ffe4e6;
+  color: #be123c;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  margin-bottom: 0.5rem;
+}
+
+.lesson-header h1 {
+  margin: 0.25rem 0 0.5rem;
+  font-size: 1.9rem;
+  color: #0f172a;
+}
+
+.lead {
+  margin: 0;
+  color: #475569;
+  font-size: 1.02rem;
+}
+
+.lesson-section {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.35rem 1.5rem;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+.lesson-section h2 {
+  margin: 0 0 0.65rem;
+  font-size: 1.2rem;
+  color: #0f172a;
+}
+
+.lesson-section p {
+  margin: 0 0 0.75rem;
+  color: #334155;
+}
+
+/* Interactive Demo Boxes */
+.demo-box {
+  background: #f1f5f9;
+  border: 1px dashed #94a3b8;
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  margin-top: 0.75rem;
+}
+
+.demo-box.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.inline-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.pill-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.pill-btn,
+.btn-primary,
+.btn-secondary {
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.pill-btn {
+  background: #ffffff;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+}
+
+.pill-btn.active {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: #0f172a;
+}
+
+.btn-primary {
+  background: #dd0031;
+  color: #ffffff;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #b90029;
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+.btn-secondary:hover {
+  background: #cbd5e1;
+}
+
+.input-field {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  min-width: 210px;
+  background: #ffffff;
+}
+
+.result-banner {
+  background: #ffffff;
+  border-left: 4px solid #dd0031;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-size: 0.92rem;
+}
+
+.result-pill {
+  background: #e0f2fe;
+  color: #0369a1;
+  padding: 0.45rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.result-pill.success {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.result-pill.warn {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+/* Home Topic Grid */
+.topic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 1rem;
+}
+
+.topic-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1.15rem;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+
+.topic-card:hover {
+  border-color: #dd0031;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.07);
+  transform: translateY(-2px);
+}
+
+.topic-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.topic-badge {
+  background: #0f172a;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.18rem 0.55rem;
+  border-radius: 5px;
+}
+
+.pdf-file {
+  font-size: 0.7rem;
+  color: #64748b;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.topic-card h3 {
+  margin: 0.2rem 0 0;
+  font-size: 1.05rem;
+  color: #0f172a;
+}
+
+.topic-card p {
+  margin: 0;
+  font-size: 0.86rem;
+  color: #475569;
+}
+
+/* Specific Demos */
+.hover-zone {
+  padding: 1rem;
+  background: #ffffff;
+  border: 2px solid #cbd5e1;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.student-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.student-row {
+  background: #ffffff;
+  padding: 0.55rem 0.85rem;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  border: 1px solid #e2e8f0;
+}
+
+.student-row .meta {
+  font-size: 0.82rem;
+  color: #64748b;
+}
+
+.demo-red {
+  color: #dc2626;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.demo-green {
+  color: #16a34a;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.style-preview {
+  padding: 0.85rem 1.1rem;
+  border-radius: 8px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.cards-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.article-preview {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.article-preview small {
+  text-transform: uppercase;
+  color: #dd0031;
+  font-weight: 700;
+}
+
+.article-preview h3 {
+  margin: 0.25rem 0 0.5rem;
+}
+
+.char-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+  gap: 0.85rem;
+}
+
+.char-card {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.char-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+}
+
+.char-info {
+  padding: 0.6rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+}
+
+.char-info span {
+  color: #64748b;
+  font-size: 0.78rem;
+}
+
+.reactive-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  max-width: 420px;
+}

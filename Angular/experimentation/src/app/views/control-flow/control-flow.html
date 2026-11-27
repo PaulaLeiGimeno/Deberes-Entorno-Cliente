@@ -1,0 +1,70 @@
+<div class="lesson-page">
+  <header class="lesson-header">
+    <span class="pdf-tag">PDF 4 · 4-DWEC_Angular_Control Flow.pdf</span>
+    <h1>Control Flow: Bucles y Condicionales</h1>
+    <p class="lead">
+      Novedad desde Angular 17: sustituye a <code>*ngIf</code>, <code>*ngSwitch</code> y <code>*ngFor</code>
+      con bloques nativos <code>&#64;if</code>, <code>&#64;switch</code> y <code>&#64;for</code> directamente en el HTML.
+    </p>
+  </header>
+
+  <section class="lesson-section">
+    <h2>1. Condicional <code>&#64;if</code> / <code>&#64;else</code></h2>
+    <app-code-block filename="ejemplos.html" [code]="ifCode"></app-code-block>
+    <div class="demo-box inline-controls">
+      <button type="button" class="btn-primary" (click)="toggleTest()">Cambiar test ({{ test }})</button>
+      @if (test) {
+        <span class="result-pill success">Hello World! (test = true)</span>
+      } @else {
+        <span class="result-pill warn">Goodbye World! (test = false)</span>
+      }
+    </div>
+  </section>
+
+  <section class="lesson-section">
+    <h2>2. Selector <code>&#64;switch</code></h2>
+    <app-code-block filename="switch.html" [code]="switchCode"></app-code-block>
+    <div class="demo-box inline-controls">
+      <button type="button" class="pill-btn" [class.active]="selectedCase === 'one'" (click)="selectedCase = 'one'">one</button>
+      <button type="button" class="pill-btn" [class.active]="selectedCase === 'two'" (click)="selectedCase = 'two'">two</button>
+      <button type="button" class="pill-btn" [class.active]="selectedCase === 'other'" (click)="selectedCase = 'other'">other</button>
+
+      @switch (selectedCase) {
+        @case ('one') {
+          <span class="result-pill">Resultado: Caso uno</span>
+        }
+        @case ('two') {
+          <span class="result-pill">Resultado: Caso dos</span>
+        }
+        @default {
+          <span class="result-pill">Resultado: Caso por defecto</span>
+        }
+      }
+    </div>
+  </section>
+
+  <section class="lesson-section">
+    <h2>3. Bucle <code>&#64;for</code>, variables implícitas y <code>&#64;empty</code></h2>
+    <p>El parámetro <code>track</code> es obligatorio para que Angular localice cada elemento tras reordenamientos.</p>
+    <app-code-block filename="for.html" [code]="forCode"></app-code-block>
+    <div class="demo-box stack">
+      <div class="inline-controls">
+        <input type="text" [(ngModel)]="newStudent" placeholder="Nuevo estudiante" class="input-field" />
+        <button type="button" class="btn-primary" (click)="addStudent()">Añadir</button>
+        <button type="button" class="btn-secondary" (click)="clearStudents()">Vaciar (&#64;empty)</button>
+        <button type="button" class="btn-secondary" (click)="resetStudents()">Restaurar</button>
+      </div>
+
+      <div class="student-list">
+        @for (student of students; track student; let i = $index; let first = $first; let last = $last; let even = $even; let odd = $odd) {
+          <div class="student-row">
+            <strong>#{{ i }} {{ student }}</strong>
+            <span class="meta">first: {{ first }} | last: {{ last }} | even: {{ even }} | odd: {{ odd }}</span>
+          </div>
+        } @empty {
+          <div class="result-pill warn">Array vacío (bloque <code>&#64;empty</code> activado)</div>
+        }
+      </div>
+    </div>
+  </section>
+</div>

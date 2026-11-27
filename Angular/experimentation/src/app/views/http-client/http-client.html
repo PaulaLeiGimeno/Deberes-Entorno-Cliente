@@ -1,0 +1,46 @@
+<div class="lesson-page">
+  <header class="lesson-header">
+    <span class="pdf-tag">PDF 9 · 9-DWEC_Cliente HTTP.pdf</span>
+    <h1>Cliente HTTP en Angular</h1>
+    <p class="lead">
+      Angular realiza peticiones HTTP mediante <strong>Servicios</strong> e <strong>Inyección de Dependencias</strong>
+      (<code>inject()</code>), configurando <code>provideHttpClient(withFetch())</code> en <code>app.config.ts</code>
+      y gestionando respuestas asíncronas con <code>Observable</code> y <code>subscribe()</code>.
+    </p>
+  </header>
+
+  <section class="lesson-section">
+    <h2>1. Configuración y Servicio</h2>
+    <app-code-block filename="app.config.ts" [code]="configCode"></app-code-block>
+    <app-code-block filename="http-demo.service.ts" [code]="serviceCode"></app-code-block>
+  </section>
+
+  <section class="lesson-section">
+    <h2>2. Petición en vivo a Rick &amp; Morty API (tipada con Interface)</h2>
+    <div class="demo-box stack">
+      <div class="inline-controls">
+        <button type="button" class="btn-primary" (click)="loadCharacters()" [disabled]="loading()">
+          {{ loading() ? 'Cargando...' : 'Recargar personajes (GET)' }}
+        </button>
+      </div>
+
+      @if (errorMsg()) {
+        <div class="result-pill warn">{{ errorMsg() }}</div>
+      }
+
+      @if (characters().length > 0) {
+        <div class="char-grid">
+          @for (char of characters(); track char.id) {
+            <div class="char-card">
+              <img [src]="char.image" [alt]="char.name" />
+              <div class="char-info">
+                <strong>{{ char.name }}</strong>
+                <span>{{ char.species }} · {{ char.status }}</span>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </section>
+</div>

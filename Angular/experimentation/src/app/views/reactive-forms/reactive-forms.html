@@ -1,0 +1,42 @@
+<div class="lesson-page">
+  <header class="lesson-header">
+    <span class="pdf-tag">PDF 10 · 10-DWEC_Formularios Reactivos.pdf</span>
+    <h1>Formularios Reactivos</h1>
+    <p class="lead">
+      A diferencia de los Template Forms, los <strong>Reactive Forms</strong> trabajan desde TypeScript con
+      <code>ReactiveFormsModule</code>, <code>FormGroup</code> y <code>FormControl</code>.
+      Usamos <code>nonNullable: true</code> para evitar el tipo <code>string | null</code> tras <code>reset()</code>.
+    </p>
+  </header>
+
+  <section class="lesson-section">
+    <h2>1. Código TypeScript y HTML</h2>
+    <app-code-block filename="form.ts" [code]="tsCode"></app-code-block>
+    <app-code-block filename="form.html" [code]="htmlCode"></app-code-block>
+  </section>
+
+  <section class="lesson-section">
+    <h2>2. Formulario Reactivo en vivo</h2>
+    <div class="demo-box stack">
+      <form class="reactive-form" (ngSubmit)="onSubmit()" [formGroup]="reactiveForm">
+        <input type="text" placeholder="Nombre" formControlName="name" class="input-field" />
+        <input type="text" placeholder="Edad" formControlName="age" class="input-field" />
+        <input type="email" placeholder="e-mail" formControlName="email" class="input-field" />
+        <div class="inline-controls">
+          <button type="submit" class="btn-primary">MOSTRAR (ngSubmit + reset)</button>
+        </div>
+      </form>
+
+      <div class="result-banner">
+        <strong>Valor en tiempo real (<code>reactiveForm.value</code>):</strong>
+        <code>{{ reactiveForm.value | json }}</code>
+      </div>
+
+      @if (submittedData) {
+        <div class="result-pill success">
+          Último envío capturado con <code>getRawValue()</code>: {{ submittedData | json }}
+        </div>
+      }
+    </div>
+  </section>
+</div>

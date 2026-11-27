@@ -1,0 +1,46 @@
+<div class="lesson-page">
+  <header class="lesson-header">
+    <span class="pdf-tag">PDF 3 · 3-DWEC_Eventos en Angular.pdf</span>
+    <h1>Eventos en Angular</h1>
+    <p class="lead">
+      Misma filosofía que en el DOM: 1º creamos el evento en el HTML entre paréntesis
+      <code>(click)</code>, <code>(mouseover)</code>, <code>(input)</code>; 2º implementamos el manejador en la clase TypeScript
+      (convenciones <code>on...</code> o <code>handle...</code>).
+    </p>
+  </header>
+
+  <section class="lesson-section">
+    <h2>1. Sintaxis en HTML y TypeScript</h2>
+    <app-code-block filename="header.html" [code]="htmlCode"></app-code-block>
+    <app-code-block filename="header.ts" [code]="tsCode"></app-code-block>
+  </section>
+
+  <section class="lesson-section">
+    <h2>2. Laboratorio de Eventos en Vivo</h2>
+    <div class="demo-box stack">
+      <div class="inline-controls">
+        <button type="button" class="btn-primary" (click)="onClick()">(click)="onClick()"</button>
+        <span class="result-pill">Clicks realizados: {{ clickCount }}</span>
+      </div>
+
+      <div
+        class="hover-zone"
+        [style.color]="hoverColor"
+        (mouseover)="onMouseOver($event)"
+        (mouseleave)="onMouseLeave($event)"
+      >
+        Pasa el ratón por encima: <code>(mouseover)="onMouseOver($event)"</code>
+      </div>
+
+      <div class="inline-controls">
+        <input
+          type="text"
+          class="input-field"
+          placeholder="Escribe aquí (input)..."
+          (input)="handleInput($event)"
+        />
+        <span class="result-pill">Texto capturado con $event: {{ lastInputValue || '(vacío)' }}</span>
+      </div>
+    </div>
+  </section>
+</div>

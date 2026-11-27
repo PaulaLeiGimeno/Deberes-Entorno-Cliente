@@ -1,0 +1,28 @@
+<div class="lesson-page">
+  <header class="lesson-header">
+    <span class="pdf-tag">PDF 6 · 6-DWEC_Angular_Routing.pdf</span>
+    <h1>Navegación Multi-página (Routing)</h1>
+    <p class="lead">
+      En una <strong>SPA (Single Page Application)</strong> todo se ejecuta en una sola página: al cambiar de sección,
+      Angular carga dinámicamente solo la vista correspondiente dentro de <code>&lt;router-outlet&gt;</code>.
+    </p>
+  </header>
+
+  <section class="lesson-section">
+    <h2>1. Carpeta <code>views/</code> y <code>app.routes.ts</code></h2>
+    <p>Creamos las vistas con <code>ng generate component views/home</code> y las registramos en <code>app.routes.ts</code>:</p>
+    <app-code-block filename="app.routes.ts" [code]="routesCode"></app-code-block>
+  </section>
+
+  <section class="lesson-section">
+    <h2>2. <code>&lt;router-outlet&gt;</code>, <code>routerLink</code> y <code>routerLinkActive</code></h2>
+    <app-code-block filename="app.html" [code]="outletCode"></app-code-block>
+    <app-code-block filename="menu.ts / menu.html" [code]="linkCode"></app-code-block>
+
+    <div class="demo-box inline-controls">
+      <span>¡Esta propia aplicación usa Routing! Prueba a navegar con <code>routerLink</code>:</span>
+      <a routerLink="/events" class="btn-primary">Ir a Eventos</a>
+      <a routerLink="/communication" class="btn-secondary">Ir a Comunicación</a>
+    </div>
+  </section>
+</div>

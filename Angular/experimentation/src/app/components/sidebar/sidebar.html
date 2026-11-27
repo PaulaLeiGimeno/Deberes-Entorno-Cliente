@@ -1,0 +1,25 @@
+<aside class="sidebar">
+  <div class="brand">
+    <a routerLink="/" class="brand-link">
+      <span class="angular-badge">NG</span>
+      <div>
+        <h2>Angular DWEC</h2>
+        <small>Guía interactiva (10 PDFs)</small>
+      </div>
+    </a>
+  </div>
+
+  <nav class="nav-list">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-item">
+      <span class="nav-num">★</span>
+      <span>Inicio / Mapa</span>
+    </a>
+
+    @for (topic of topics; track topic.id) {
+      <a [routerLink]="topic.route" routerLinkActive="active" class="nav-item">
+        <span class="nav-num">{{ topic.number }}</span>
+        <span>{{ topic.title }}</span>
+      </a>
+    }
+  </nav>
+</aside>

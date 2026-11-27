@@ -1,0 +1,37 @@
+<div class="lesson-page">
+  <header class="lesson-header">
+    <span class="pdf-tag">PDF 7 · 7-DWEC_Angular_Comunicación entre Componentes.pdf</span>
+    <h1>Comunicación entre Componentes</h1>
+    <p class="lead">
+      Cuando un componente padre contiene un componente hijo se crea una jerarquía:
+      <strong>Padre → Hijo</strong> usa <code>&#64;Input()</code>;
+      <strong>Hijo → Padre</strong> usa <code>&#64;Output()</code> + <code>EventEmitter</code>.
+    </p>
+  </header>
+
+  <section class="lesson-section">
+    <h2>1. Padre → Hijo (<code>&#64;Input</code>) y Hijo → Padre (<code>&#64;Output</code>)</h2>
+    <app-code-block filename="input.ts / html" [code]="inputCode"></app-code-block>
+    <app-code-block filename="output.ts / html" [code]="outputCode"></app-code-block>
+  </section>
+
+  <section class="lesson-section">
+    <h2>2. Demo en vivo: Componente <code>&lt;app-demo-card&gt;</code></h2>
+    <p>El padre pasa <code>[photo]</code>, <code>[fruit]</code> y <code>[price]</code> por <code>&#64;Input</code> y escucha <code>(message)="onMessageReceived($event)"</code>:</p>
+    <div class="demo-box stack">
+      <div class="cards-row">
+        @for (item of fruits; track item.fruit) {
+          <app-demo-card
+            [photo]="item.photo"
+            [fruit]="item.fruit"
+            [price]="item.price"
+            (message)="onMessageReceived($event)"
+          ></app-demo-card>
+        }
+      </div>
+      <div class="result-banner">
+        <strong>Evento recibido en el Padre:</strong> {{ lastEventMessage }}
+      </div>
+    </div>
+  </section>
+</div>

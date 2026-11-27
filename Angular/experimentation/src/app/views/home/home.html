@@ -1,0 +1,24 @@
+<div class="lesson-page">
+  <header class="lesson-header">
+    <span class="pdf-tag">Guía Interactiva · Curso DWEC</span>
+    <h1>Aprende Angular con los 10 PDFs</h1>
+    <p class="lead">
+      Esta aplicación (<code>experimentation</code>) explica e implementa en vivo todos los conceptos
+      de los 10 temas de la carpeta <code>pdf/</code>. Selecciona cualquier tema para ver la teoría,
+      el código y probarlo en directo.
+    </p>
+  </header>
+
+  <div class="topic-grid">
+    @for (topic of topics; track topic.id) {
+      <a [routerLink]="topic.route" class="topic-card">
+        <div class="topic-card-top">
+          <span class="topic-badge">Tema {{ topic.number }}</span>
+          <small class="pdf-file">{{ topic.pdfName }}</small>
+        </div>
+        <h3>{{ topic.title }}</h3>
+        <p>{{ topic.summary }}</p>
+      </a>
+    }
+  </div>
+</div>

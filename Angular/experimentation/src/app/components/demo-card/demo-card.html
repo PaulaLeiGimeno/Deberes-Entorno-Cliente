@@ -1,0 +1,12 @@
+<div class="fruit-card">
+  <div class="fruit-emoji-banner">
+    <span class="fruit-emoji">{{ photo }}</span>
+  </div>
+  <div class="fruit-info">
+    <button type="button" class="fruit-name-btn" (click)="onClick()" title="Click para emitir evento @Output">
+      {{ fruit }}
+    </button>
+    <p class="fruit-price">{{ price }} €/kg</p>
+    <small class="fruit-hint">Haz click en el nombre para emitir @Output</small>
+  </div>
+</div>
